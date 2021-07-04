@@ -1,0 +1,7 @@
+
+V	java:S107
+"AConstructor has 8 parameters, which is greater than 7 authorized.(ÿùËÛ
+G
+java:S1068",Remove this unused "shipName" private field.(›æ¼‚ÿÿÿÿÿ
+J
+java:S1068"/Remove this unused "checkpoints" private field.(®ôŞÑÿÿÿÿÿ
