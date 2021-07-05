@@ -1,4 +1,4 @@
-package java.entity;
+package task.entity;
 
 import java.time.LocalDate;
 
@@ -19,5 +19,17 @@ public class Trip {
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "destination='" + destination + '\'' +
+                ", nutritionType=" + nutritionType +
+                ", transport=" + transport +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package java.entity;
+package task.entity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,5 +13,14 @@ public class Cruise extends Trip {
         super(destination, nutritionType, transport, price, startDate, endDate);
         this.shipName = shipName;
         this.checkpoints = checkpoints;
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "Cruise{" +
+                "shipName='" + shipName + '\'' +
+                ", checkpoints=" + checkpoints +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package java.entity;
+package task.entity;
 
 public class Transport {
     private final TransportType transportType;

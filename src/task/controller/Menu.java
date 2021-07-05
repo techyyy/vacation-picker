@@ -1,4 +1,4 @@
-package java.view;
+package task.controller;
 
 import java.io.IOException;
 import java.util.List;

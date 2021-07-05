@@ -1,4 +1,4 @@
-package java.entity;
+package task.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
