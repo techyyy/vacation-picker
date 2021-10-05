@@ -1,0 +1,10 @@
+ Trip ----------------------
+ destination='a
+ nutritionType=INCLUDED
+ transport=Transport(transportType=PLANE, price=20.0)
+ price=30.0
+ startDate=2000-05-06
+ endDate=2000-05-10
+ shipName='ship'
+ checkpoints=[b, c]
+

@@ -1,0 +1,24 @@
+{
+  "destination": "a",
+  "nutritionType": "INCLUDED",
+  "transport": {
+    "transportType": "PLANE",
+    "price": 20.0
+  },
+  "price": 30.0,
+  "startDate": [
+    2000,
+    5,
+    6
+  ],
+  "endDate": [
+    2000,
+    5,
+    10
+  ],
+  "shipName": "ship",
+  "checkpoints": [
+    "b",
+    "c"
+  ]
+}
