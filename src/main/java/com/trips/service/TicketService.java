@@ -10,12 +10,13 @@ import java.io.IOException;
 @Service
 @Slf4j
 public class TicketService {
-    public<T> void printTicket(T trip) {
+    public<T> boolean printTicket(T trip) {
         File ticket = new File("tickets/ticket" + System.currentTimeMillis() + ".txt");
         try (FileWriter myWriter = new FileWriter("tickets/ticket" + System.currentTimeMillis() + ".txt")) {
             myWriter.write(trip.toString());
         } catch (IOException e) {
             log.error("Could not create the file" + e.getMessage());
         }
+        return true;
     }
 }

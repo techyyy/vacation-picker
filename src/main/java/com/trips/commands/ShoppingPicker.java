@@ -1,5 +1,6 @@
 package com.trips.commands;
 
+import com.trips.service.ConsoleReaderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.trips.service.ShoppingService;
@@ -17,20 +18,14 @@ public class ShoppingPicker {
 
     private final TicketService ticketService;
     private final ShoppingService shoppingService;
+    private final ConsoleReaderService consoleReaderService;
 
-    public void pickShopping(Scanner scanner) {
+    public boolean pickShopping() {
         List<Shopping> available = shoppingService.retrieveAvailableShoppings();
         System.out.println("Available shopping trips: ");
         available.forEach(excursion -> System.out.print(available.indexOf(excursion)+1 + "." + excursion.toString()));
         System.out.println("If you are interested in any of these shopping trips, type its number to form a ticket.\nOtherwise type 'back'");
-        String choice = scanner.nextLine();
-        try {
-            int shoppingNumber = Integer.parseInt(choice);
-            if(shoppingNumber > 0) {
-                ticketService.printTicket(available.get(shoppingNumber));
-            }
-        } catch (NumberFormatException e) {
-            log.info("Going back.");
-        }
+        String choice = consoleReaderService.getLine();
+        return PickerUtils.printTrip(choice, ticketService, available);
     }
 }

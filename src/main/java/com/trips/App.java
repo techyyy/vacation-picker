@@ -1,6 +1,7 @@
 package com.trips;
 
 import com.trips.commands.*;
+import com.trips.service.ConsoleReaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +30,8 @@ public class App implements CommandLineRunner {
     @Lazy
     private final TherapyPicker therapyPicker;
 
+    private final ConsoleReaderService consoleReaderService;
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
@@ -44,24 +47,23 @@ public class App implements CommandLineRunner {
             System.out.println("Shopping   --- 5");
             System.out.println("Stop       --- 0");
 
-            Scanner scanner = new Scanner(System.in);
-            String choice = scanner.nextLine();
+            String choice = consoleReaderService.getLine();
 
             switch (choice) {
                 case "1":
-                    cruisePicker.pickCruise(scanner);
+                    cruisePicker.pickCruise();
                     break;
                 case "2":
-                    excursionPicker.pickExcursion(scanner);
+                    excursionPicker.pickExcursion();
                     break;
                 case "3":
-                    therapyPicker.pickTherapy(scanner);
+                    therapyPicker.pickTherapy();
                     break;
                 case "4":
-                    recreationPicker.pickRecreation(scanner);
+                    recreationPicker.pickRecreation();
                     break;
                 case "5":
-                    shoppingPicker.pickShopping(scanner);
+                    shoppingPicker.pickShopping();
                     break;
                 case "0":
                     return;

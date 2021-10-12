@@ -1,5 +1,6 @@
 package com.trips.commands;
 
+import com.trips.service.ConsoleReaderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.trips.service.RecreationService;
@@ -17,20 +18,14 @@ public class RecreationPicker {
 
     private final TicketService ticketService;
     private final RecreationService recreationService;
+    private final ConsoleReaderService consoleReaderService;
 
-    public void pickRecreation(Scanner scanner) {
+    public boolean pickRecreation() {
         List<Recreation> available = recreationService.retrieveAvailableRecreations();
         System.out.println("Available recreations: ");
         available.forEach(recreation -> System.out.print(available.indexOf(recreation)+1 + "." + recreation.toString()));
         System.out.println("If you are interested in any of these recreations, type its number to form a ticket.\nOtherwise type 'back'");
-        String choice = scanner.nextLine();
-        try {
-            int recreationNumber = Integer.parseInt(choice);
-            if(recreationNumber > 0) {
-                ticketService.printTicket(available.get(recreationNumber));
-            }
-        } catch (NumberFormatException e) {
-            log.info("Going back.");
-        }
+        String choice = consoleReaderService.getLine();
+        return PickerUtils.printTrip(choice, ticketService, available);
     }
 }
