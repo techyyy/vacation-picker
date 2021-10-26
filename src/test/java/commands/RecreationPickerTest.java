@@ -1,10 +1,9 @@
 package commands;
 
-import com.trips.service.ConsoleReaderService;
 import com.trips.commands.RecreationPicker;
 import com.trips.entity.*;
+import com.trips.service.PickerService;
 import com.trips.service.RecreationService;
-import com.trips.service.TicketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -34,10 +32,7 @@ public class RecreationPickerTest {
     private RecreationService recreationService;
 
     @Mock
-    private TicketService ticketService;
-
-    @Mock
-    private ConsoleReaderService pickerUtils;
+    private PickerService pickerService;
 
     @Before
     public void initMocks(){
@@ -47,8 +42,7 @@ public class RecreationPickerTest {
     @Test
     public void shouldPrintRecreation() {
         when(recreationService.retrieveAvailableRecreations()).thenReturn(AVAILABLE_RECREATIONS);
-        when(ticketService.printTicket(AVAILABLE_RECREATIONS.get(0))).thenReturn(true);
-        when(pickerUtils.getLine()).thenReturn("0");
+        when(pickerService.chooseTrip(AVAILABLE_RECREATIONS)).thenReturn(true);
         assertTrue(recreationPicker.pickRecreation());
     }
 

@@ -1,10 +1,12 @@
 package commands;
 
 import com.trips.commands.TherapyPicker;
-import com.trips.entity.*;
-import com.trips.service.ConsoleReaderService;
+import com.trips.entity.Food;
+import com.trips.entity.Therapy;
+import com.trips.entity.Transport;
+import com.trips.entity.TransportType;
+import com.trips.service.PickerService;
 import com.trips.service.TherapyService;
-import com.trips.service.TicketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -34,10 +35,7 @@ public class TherapyPickerTest {
     private TherapyService therapyService;
 
     @Mock
-    private TicketService ticketService;
-
-    @Mock
-    private ConsoleReaderService pickerUtils;
+    private PickerService pickerService;
 
     @Before
     public void initMocks(){
@@ -47,8 +45,7 @@ public class TherapyPickerTest {
     @Test
     public void shouldPrintTherapy() {
         when(therapyService.retrieveAvailableTherapies()).thenReturn(AVAILABLE_THERAPIES);
-        when(ticketService.printTicket(AVAILABLE_THERAPIES.get(0))).thenReturn(true);
-        when(pickerUtils.getLine()).thenReturn("0");
+        when(pickerService.chooseTrip(AVAILABLE_THERAPIES)).thenReturn(true);
         assertTrue(therapyPicker.pickTherapy());
     }
 

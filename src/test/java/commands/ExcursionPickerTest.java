@@ -1,10 +1,12 @@
 package commands;
 
 import com.trips.commands.ExcursionPicker;
-import com.trips.entity.*;
-import com.trips.service.ConsoleReaderService;
+import com.trips.entity.Excursion;
+import com.trips.entity.Food;
+import com.trips.entity.Transport;
+import com.trips.entity.TransportType;
 import com.trips.service.ExcursionService;
-import com.trips.service.TicketService;
+import com.trips.service.PickerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -34,10 +35,7 @@ public class ExcursionPickerTest {
     private ExcursionService excursionService;
 
     @Mock
-    private TicketService ticketService;
-
-    @Mock
-    private ConsoleReaderService pickerUtils;
+    private PickerService pickerService;
 
     @Before
     public void initMocks(){
@@ -47,8 +45,7 @@ public class ExcursionPickerTest {
     @Test
     public void shouldPrintExcursion() {
         when(excursionService.retrieveAvailableExcursions()).thenReturn(AVAILABLE_EXCURSIONS);
-        when(ticketService.printTicket(AVAILABLE_EXCURSIONS.get(0))).thenReturn(true);
-        when(pickerUtils.getLine()).thenReturn("0");
+        when(pickerService.chooseTrip(AVAILABLE_EXCURSIONS)).thenReturn(true);
         assertTrue(excursionPicker.pickExcursion());
     }
 

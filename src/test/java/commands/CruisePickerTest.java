@@ -1,10 +1,12 @@
 package commands;
 
 import com.trips.commands.CruisePicker;
-import com.trips.entity.*;
-import com.trips.service.ConsoleReaderService;
+import com.trips.entity.Cruise;
+import com.trips.entity.Food;
+import com.trips.entity.Transport;
+import com.trips.entity.TransportType;
 import com.trips.service.CruiseService;
-import com.trips.service.TicketService;
+import com.trips.service.PickerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -33,10 +35,7 @@ public class CruisePickerTest {
     private CruiseService cruiseService;
 
     @Mock
-    private TicketService ticketService;
-
-    @Mock
-    private ConsoleReaderService pickerUtils;
+    private PickerService pickerService;
 
     @Before
     public void initMocks(){
@@ -46,8 +45,7 @@ public class CruisePickerTest {
     @Test
     public void shouldPrintCruise() {
         when(cruiseService.retrieveAvailableCruises()).thenReturn(AVAILABLE_CRUISES);
-        when(ticketService.printTicket(AVAILABLE_CRUISES.get(0))).thenReturn(true);
-        when(pickerUtils.getLine()).thenReturn("0");
+        when(pickerService.chooseTrip(AVAILABLE_CRUISES)).thenReturn(true);
         assertTrue(cruisePicker.pickCruise());
     }
 

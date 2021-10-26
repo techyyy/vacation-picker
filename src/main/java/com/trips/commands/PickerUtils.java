@@ -10,7 +10,7 @@ import java.util.List;
 public class PickerUtils {
     public static boolean printTrip(String choice, TicketService ticketService, List<? extends Trip> available) {
         try {
-            int therapyNumber = Integer.parseInt(choice);
+            int therapyNumber = Integer.parseInt(choice) - 1;
             if(therapyNumber > 0) {
                 ticketService.printTicket(available.get(therapyNumber));
             }
@@ -18,5 +18,9 @@ public class PickerUtils {
             log.info("Going back.");
         }
         return true;
+    }
+
+    public static void printTrips(List<? extends Trip> trips) {
+        trips.forEach(trip -> System.out.print(trips.indexOf(trip)+1 + "." + trip.toString()));
     }
 }

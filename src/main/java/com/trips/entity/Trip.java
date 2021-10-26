@@ -13,15 +13,15 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Trip {
-    private  String destination;
-    private  Food nutritionType;
-    private  Transport transport;
-    private  double price;
+public class Trip implements Comparable<Trip>{
+    private String destination;
+    private Food nutritionType;
+    private Transport transport;
+    private double price;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private  LocalDate startDate;
+    private LocalDate startDate;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -47,5 +47,10 @@ public class Trip {
                 "\n price=" + price +
                 "\n startDate=" + startDate +
                 "\n endDate=" + endDate;
+    }
+
+    @Override
+    public int compareTo(Trip o) {
+        return price > o.price ? 1 : -1;
     }
 }

@@ -17,6 +17,7 @@ public class TicketService {
         } catch (IOException e) {
             log.error("Could not create the file" + e.getMessage());
         }
+        System.out.println("Purchase successful!");
         return true;
     }
 }
