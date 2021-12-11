@@ -1,0 +1,10 @@
+ Trip ----------------------
+ destination='England
+ nutritionType=INCLUDED
+ transport=Transport(transportType=PLANE, price=20.0)
+ price=10.0
+ startDate=2021-05-06
+ endDate=2021-05-10
+ shipName='ship'
+ checkpoints=[London, Birmingham]
+
